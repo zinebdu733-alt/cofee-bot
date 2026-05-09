@@ -2,8 +2,13 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
 
 TOKEN = "8641834002:AAH21eeFetbZZhVPcP-r8_GwfBEyfST6VsY"
-WHATSAPP = "https://wa.me/33753400705"
 CANAL = "https://t.me/HERO38iserelivraison"
+TELEGRAM_CMD = "https://t.me/coffeeisere"
+WHATSAPP = "https://chat.whatsapp.com/IG88nsy502C1va1Svg0Zvi?mode=gi_t"
+
+PHOTOS = [
+    "https://i.ibb.co/9m7GSy4X/IMG-2887.jpg",
+]
 
 MENU_TEXT = (
     "『 🌑 *C O F F E E  I S È R E* 🌑 』\n"
@@ -29,14 +34,22 @@ TARIFS_TEXT = (
 
 def menu_keyboard():
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("💙 Nos Tarifs & Infos 💙", callback_data="infos")],
-        [InlineKeyboardButton("📲 Commander Maintenant", url=WHATSAPP)],
+        [InlineKeyboardButton("📸 Nos Produits", callback_data="produits")],
+        [InlineKeyboardButton("💰 Nos Tarifs & Infos", callback_data="infos")],
+        [InlineKeyboardButton("📲 Commander via Telegram", url=TELEGRAM_CMD)],
+        [InlineKeyboardButton("💬 Commander via WhatsApp", url=WHATSAPP)],
         [InlineKeyboardButton("🌑 Rejoindre le Canal", url=CANAL)],
     ])
 
 def tarifs_keyboard():
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("📲 Commander Maintenant", url=WHATSAPP)],
+        [InlineKeyboardButton("📲 Commander via Telegram", url=TELEGRAM_CMD)],
+        [InlineKeyboardButton("💬 Commander via WhatsApp", url=WHATSAPP)],
+        [InlineKeyboardButton("🔙 Retour au Menu", callback_data="retour")],
+    ])
+
+def retour_keyboard():
+    return InlineKeyboardMarkup([
         [InlineKeyboardButton("🔙 Retour au Menu", callback_data="retour")],
     ])
 
@@ -51,12 +64,23 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
+
     if query.data == "infos":
         await query.edit_message_caption(
             caption=TARIFS_TEXT,
             reply_markup=tarifs_keyboard(),
             parse_mode="Markdown"
         )
+
+    elif query.data == "produits":
+        await query.edit_message_caption(
+            caption="📸 *Nos Produits* 🖤\n\nVoici nos produits disponibles :",
+            reply_markup=retour_keyboard(),
+            parse_mode="Markdown"
+        )
+        for photo in PHOTOS:
+            await query.message.reply_photo(photo=photo)
+
     elif query.data == "retour":
         await query.edit_message_caption(
             caption=MENU_TEXT,
