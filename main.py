@@ -42,7 +42,7 @@ def tarifs_keyboard():
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_photo(
-        photo="https://i.ibb.co/Y7sfgS52/truc.png",
+        photo="https://i.ibb.co/9m7GSy4X/IMG-2887.jpg"
         caption=MENU_TEXT,
         reply_markup=menu_keyboard(),
         parse_mode="Markdown"
