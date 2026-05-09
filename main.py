@@ -4,7 +4,8 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Cont
 TOKEN = "8641834002:AAH21eeFetbZZhVPcP-r8_GwfBEyfST6VsY"
 CANAL = "https://t.me/HERO38iserelivraison"
 TELEGRAM_CMD = "https://t.me/coffeeisere"
-WHATSAPP = "https://chat.whatsapp.com/IG88nsy502C1va1Svg0Zvi?mode=gi_t"
+WHATSAPP_NUM = "https://wa.me/33753400705"
+WHATSAPP_GROUP = "https://chat.whatsapp.com/IG88nsy502C1va1Svg0Zvi?mode=gi_t"
 
 PHOTOS = [
     "https://i.ibb.co/9m7GSy4X/IMG-2887.jpg",
@@ -37,14 +38,15 @@ def menu_keyboard():
         [InlineKeyboardButton("📸 Nos Produits", callback_data="produits")],
         [InlineKeyboardButton("💰 Nos Tarifs & Infos", callback_data="infos")],
         [InlineKeyboardButton("📲 Commander via Telegram", url=TELEGRAM_CMD)],
-        [InlineKeyboardButton("💬 Commander via WhatsApp", url=WHATSAPP)],
+        [InlineKeyboardButton("📞 Nous contacter WhatsApp", url=WHATSAPP_NUM)],
+        [InlineKeyboardButton("👥 Groupe WhatsApp", url=WHATSAPP_GROUP)],
         [InlineKeyboardButton("🌑 Rejoindre le Canal", url=CANAL)],
     ])
 
 def tarifs_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("📲 Commander via Telegram", url=TELEGRAM_CMD)],
-        [InlineKeyboardButton("💬 Commander via WhatsApp", url=WHATSAPP)],
+        [InlineKeyboardButton("📞 Nous contacter WhatsApp", url=WHATSAPP_NUM)],
         [InlineKeyboardButton("🔙 Retour au Menu", callback_data="retour")],
     ])
 
