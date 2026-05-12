@@ -1,15 +1,14 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
+import os
 
-TOKEN = "8641834002:AAH21eeFetbZZhVPcP-r8_GwfBEyfST6VsY"
+TOKEN = os.environ.get("TOKEN")
 CANAL = "https://t.me/HERO38iserelivraison"
 TELEGRAM_CMD = "https://t.me/coffeeisere"
 WHATSAPP_NUM = "https://wa.me/33753400705"
 WHATSAPP_GROUP = "https://chat.whatsapp.com/IG88nsy502C1va1Svg0Zvi?mode=gi_t"
 
-PHOTOS = [
-    "https://i.ibb.co/9m7GSy4X/IMG-2887.jpg",
-]
+PHOTO_URL = "https://i.ibb.co/9m7GSy4X/IMG-2887.jpg"
 
 MENU_TEXT = (
     "『 🌑 *C O F F E E  I S È R E* 🌑 』\n"
@@ -36,7 +35,7 @@ def retour_keyboard():
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_photo(
-        photo="https://i.ibb.co/9m7GSy4X/IMG-2887.jpg",
+        photo=PHOTO_URL,
         caption=MENU_TEXT,
         reply_markup=menu_keyboard(),
         parse_mode="Markdown"
@@ -47,20 +46,34 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
 
     if query.data == "produits":
-        await query.edit_message_caption(
-            caption="📸 *Nos Produits* 🖤\n\nVoici nos produits disponibles :",
-            reply_markup=retour_keyboard(),
-            parse_mode="Markdown"
-        )
-        for photo in PHOTOS:
-            await query.message.reply_photo(photo=photo)
+        try:
+            await query.edit_message_caption(
+                caption="📸 *Nos Produits* 🖤\n\nVoici nos produits disponibles :",
+                reply_markup=retour_keyboard(),
+                parse_mode="Markdown"
+            )
+        except Exception:
+            await query.message.reply_text(
+                "📸 *Nos Produits* 🖤\n\nVoici nos produits disponibles :",
+                reply_markup=retour_keyboard(),
+                parse_mode="Markdown"
+            )
+        await query.message.reply_photo(photo=PHOTO_URL)
 
     elif query.data == "retour":
-        await query.edit_message_caption(
-            caption=MENU_TEXT,
-            reply_markup=menu_keyboard(),
-            parse_mode="Markdown"
-        )
+        try:
+            await query.edit_message_caption(
+                caption=MENU_TEXT,
+                reply_markup=menu_keyboard(),
+                parse_mode="Markdown"
+            )
+        except Exception:
+            await query.message.reply_photo(
+                photo=PHOTO_URL,
+                caption=MENU_TEXT,
+                reply_markup=menu_keyboard(),
+                parse_mode="Markdown"
+            )
 
 def main():
     app = Application.builder().token(TOKEN).build()
