@@ -11,34 +11,34 @@ WHATSAPP_GROUP = "https://chat.whatsapp.com/IG88nsy502C1va1Svg0Zvi?mode=gi_t"
 PHOTO_URL = "https://i.ibb.co/9m7GSy4X/IMG-2887.jpg"
 
 MENU_TEXT = (
-    "✦ ────────────────── ✦\n"
-    "☕ *COFFEE ISÈRE* ☕\n"
-    "✦ ────────────────── ✦\n\n"
-    "🖤 *Livraison rapide • Qualité premium*\n\n"
-    "Bienvenue dans notre univers exclusif ✨\n"
-    "Choisis une option ci-dessous 👇"
+    "✦ ------------------ ✦\n"
+    "COFFEE ISERE\n"
+    "✦ ------------------ ✦\n\n"
+    "Livraison rapide - Qualite premium\n\n"
+    "Bienvenue dans notre univers\n"
+    "Choisis une option ci-dessous"
 )
 
 PRODUITS_TEXT = (
-    "✦ ────────────────── ✦\n"
-    "📦 *NOS PRODUITS*\n"
-    "✦ ────────────────── ✦\n\n"
-    "🖤 Sélection premium • Stock limité\n\n"
-    "Pour commander, contacte-nous directement 👇"
+    "✦ ------------------ ✦\n"
+    "NOS PRODUITS\n"
+    "✦ ------------------ ✦\n\n"
+    "Selection premium - Stock limite\n\n"
+    "Pour commander, contacte-nous directement"
 )
 
 def menu_keyboard():
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("☕ Voir nos Produits", callback_data="produits")],
-        [InlineKeyboardButton("⚡️ Commander sur Telegram", url=TELEGRAM_CMD)],
-        [InlineKeyboardButton("📞 WhatsApp Direct", url=WHATSAPP_NUM)],
-        [InlineKeyboardButton("👥 Rejoindre le Groupe", url=WHATSAPP_GROUP)],
-        [InlineKeyboardButton("🌑 Notre Canal Officiel", url=CANAL)],
+        [InlineKeyboardButton("Voir nos Produits", callback_data="produits")],
+        [InlineKeyboardButton("Commander sur Telegram", url=TELEGRAM_CMD)],
+        [InlineKeyboardButton("WhatsApp Direct", url=WHATSAPP_NUM)],
+        [InlineKeyboardButton("Rejoindre le Groupe", url=WHATSAPP_GROUP)],
+        [InlineKeyboardButton("Notre Canal Officiel", url=CANAL)],
     ])
 
 def retour_keyboard():
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("🔙 Retour au Menu", callback_data="retour")],
+        [InlineKeyboardButton("Retour au Menu", callback_data="retour")],
     ])
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
