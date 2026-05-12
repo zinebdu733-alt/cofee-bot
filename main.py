@@ -11,21 +11,29 @@ WHATSAPP_GROUP = "https://chat.whatsapp.com/IG88nsy502C1va1Svg0Zvi?mode=gi_t"
 PHOTO_URL = "https://i.ibb.co/9m7GSy4X/IMG-2887.jpg"
 
 MENU_TEXT = (
-    "『 🌑 *C O F F E E  I S È R E* 🌑 』\n"
-    "━━━━━━━━━━━━━━━━━━━\n"
-    "💙 *Qualité Premium • Livraison Rapide*\n"
-    "━━━━━━━━━━━━━━━━━━━\n\n"
-    "Bienvenue dans notre univers 🖤\n"
-    "Que puis-je faire pour toi ? ⬇️"
+    "✦ ────────────────── ✦\n"
+    "☕ *COFFEE ISÈRE* ☕\n"
+    "✦ ────────────────── ✦\n\n"
+    "🖤 *Livraison rapide • Qualité premium*\n\n"
+    "Bienvenue dans notre univers exclusif ✨\n"
+    "Choisis une option ci-dessous 👇"
+)
+
+PRODUITS_TEXT = (
+    "✦ ────────────────── ✦\n"
+    "📦 *NOS PRODUITS*\n"
+    "✦ ────────────────── ✦\n\n"
+    "🖤 Sélection premium • Stock limité\n\n"
+    "Pour commander, contacte-nous directement 👇"
 )
 
 def menu_keyboard():
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("📸 Nos Produits", callback_data="produits")],
-        [InlineKeyboardButton("📲 Commander via Telegram", url=TELEGRAM_CMD)],
-        [InlineKeyboardButton("📞 Nous contacter WhatsApp", url=WHATSAPP_NUM)],
-        [InlineKeyboardButton("👥 Groupe WhatsApp", url=WHATSAPP_GROUP)],
-        [InlineKeyboardButton("🌑 Rejoindre le Canal", url=CANAL)],
+        [InlineKeyboardButton("☕ Voir nos Produits", callback_data="produits")],
+        [InlineKeyboardButton("⚡️ Commander sur Telegram", url=TELEGRAM_CMD)],
+        [InlineKeyboardButton("📞 WhatsApp Direct", url=WHATSAPP_NUM)],
+        [InlineKeyboardButton("👥 Rejoindre le Groupe", url=WHATSAPP_GROUP)],
+        [InlineKeyboardButton("🌑 Notre Canal Officiel", url=CANAL)],
     ])
 
 def retour_keyboard():
@@ -34,12 +42,13 @@ def retour_keyboard():
     ])
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_photo(
-        photo=PHOTO_URL,
-        caption=MENU_TEXT,
-        reply_markup=menu_keyboard(),
-        parse_mode="Markdown"
-    )
+    if update.message:
+        await update.message.reply_photo(
+            photo=PHOTO_URL,
+            caption=MENU_TEXT,
+            reply_markup=menu_keyboard(),
+            parse_mode="Markdown"
+        )
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
@@ -48,13 +57,13 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if query.data == "produits":
         try:
             await query.edit_message_caption(
-                caption="📸 *Nos Produits* 🖤\n\nVoici nos produits disponibles :",
+                caption=PRODUITS_TEXT,
                 reply_markup=retour_keyboard(),
                 parse_mode="Markdown"
             )
         except Exception:
             await query.message.reply_text(
-                "📸 *Nos Produits* 🖤\n\nVoici nos produits disponibles :",
+                PRODUITS_TEXT,
                 reply_markup=retour_keyboard(),
                 parse_mode="Markdown"
             )
