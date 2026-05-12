@@ -11,18 +11,14 @@ WHATSAPP_GROUP = "https://chat.whatsapp.com/IG88nsy502C1va1Svg0Zvi?mode=gi_t"
 PHOTO_URL = "https://i.ibb.co/9m7GSy4X/IMG-2887.jpg"
 
 MENU_TEXT = (
-    "✦ ------------------ ✦\n"
-    "COFFEE ISERE\n"
-    "✦ ------------------ ✦\n\n"
+    "COFFEE ISERE\n\n"
     "Livraison rapide - Qualite premium\n\n"
     "Bienvenue dans notre univers\n"
     "Choisis une option ci-dessous"
 )
 
 PRODUITS_TEXT = (
-    "✦ ------------------ ✦\n"
-    "NOS PRODUITS\n"
-    "✦ ------------------ ✦\n\n"
+    "NOS PRODUITS\n\n"
     "Selection premium - Stock limite\n\n"
     "Pour commander, contacte-nous directement"
 )
